@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import * as XLSX from 'xlsx'; // Импортируем библиотеку для работы с Excel
 import styles from './MyTestList.module.css';
 
 const MyTestList = () => {
@@ -31,6 +32,14 @@ const MyTestList = () => {
         fetchTests();
     }, []);
 
+    // Функция для экспорта теста в Excel
+    const handleExportToExcel = (test) => {
+        const ws = XLSX.utils.json_to_sheet([test]); // Преобразуем тест в формат Excel
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Test'); // Добавляем лист в книгу
+        XLSX.writeFile(wb, `${test.title}.xlsx`); // Загружаем файл с именем теста
+    };
+
     return (
         <div className={styles.container}>
             {error && <p className={styles.error}>{error}</p>}
@@ -49,6 +58,13 @@ const MyTestList = () => {
                             <p className={styles.details}><strong>Категория:</strong> {test.categoryName}</p>
                             <p className={styles.details}><strong>Описание:</strong> {test.description}</p>
                             <p className={styles.details}><strong>Автор:</strong> {test.author.email}</p>
+                            {/* Кнопка для экспорта в Excel */}
+                            <button
+                                className={styles.exportButton}
+                                onClick={() => handleExportToExcel(test)}
+                            >
+                                Экспорт в Excel
+                            </button>
                         </li>
                     ))
                 )}

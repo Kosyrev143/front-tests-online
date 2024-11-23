@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './Result.css'; // Импорт стилей
 
 const Result = () => {
     const { id } = useParams(); // Получаем ID результата из URL
@@ -21,6 +22,8 @@ const Result = () => {
                         Authorization: `${token}`,
                     },
                 });
+                console.log(response.data)
+
                 setResult(response.data);
             } catch (err) {
                 setError('Не удалось загрузить результат');
@@ -31,19 +34,19 @@ const Result = () => {
     }, [id]);
 
     if (error) {
-        return <p className={styles.error}>{error}</p>;
+        return <p>{error}</p>;
     }
 
     if (!result) {
-        return <p className={styles.loading}>Загрузка...</p>;
+        return <p>Загрузка...</p>;
     }
 
     return (
-        <div className={styles.resultContainer}>
-            <h2 className={styles.resultTitle}>Детали результата</h2>
-            <p className={styles.resultItem}><strong>Пользователь:</strong> {result.user.email}</p>
-            <p className={styles.resultItem}><strong>Тест:</strong> {result.test.title}</p>
-            <p className={styles.resultItem}><strong>Баллы:</strong> {result.score}</p>
+        <div className="result-container">
+            <h2 className="result-title">Детали результата</h2>
+            <p><strong>Пользователь:</strong> {result.user.email}</p>
+            <p><strong>Тест:</strong> {result.test.title}</p>
+            <p><strong>Баллы:</strong> {result.score}</p>
         </div>
     );
 };
