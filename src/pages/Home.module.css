@@ -1,0 +1,64 @@
+.homeContainer {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.welcomeText {
+    text-align: center;
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    color: #0078d7;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.error {
+    color: #d9534f;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.testList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.testCard {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.testTitle {
+    color: #0078d7;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.noTests {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+}
